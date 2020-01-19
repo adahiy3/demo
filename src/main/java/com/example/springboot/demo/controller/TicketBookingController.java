@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 @RestController
 public class TicketBookingController {
@@ -19,8 +18,10 @@ public class TicketBookingController {
     TicketBookingService ticketBookingService;
 
     @GetMapping(value = "/ticketid")
-    public String getTicketdetails(){
-        return "ticket returned is";
+    public List<Ticket> getTicketdetails(){
+
+        return ticketBookingService.getTicketDetails();
+
     }
 
     @PostMapping(value = "/ticket")
