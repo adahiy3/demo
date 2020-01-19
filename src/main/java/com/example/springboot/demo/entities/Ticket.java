@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table(name="ticket")
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
@@ -12,20 +12,31 @@ public class Ticket {
     @Column(name = "ticket_id")
     Integer id;
 
-    @Column(name="passenger_name")
+    @Column(name = "passenger_name")
     String passengerName;
 
-    @Column(name="ticket_price")
+    @Column(name = "ticket_price")
     Integer ticketPrice;
 
-    @Column(name="start_station")
+    @Column(name = "start_station")
     String startStation;
 
-    @Column(name="destination_station")
+    @Column(name = "destination_station")
     String destinationStation;
 
-    @Column(name="travel_date")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "travel_date")
     Instant travelDate;
+
+    @Column(name="passenger_email")
+    String email;
 
     public Integer getId() {
         return id;
