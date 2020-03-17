@@ -9,6 +9,8 @@ import java.util.Date;
 @Table(name="person")
 //below annotation will ensure to update only columns which you are updating not the complete columns
 @DynamicUpdate
+@NamedQueries(value = {@NamedQuery(name="Person.fetchPersonsInfo", query = "SELECT p from Person p where p.lastName=?1")})
+@NamedNativeQueries(value = {@NamedNativeQuery(name="Person.fetchPersonsInfoNamedNative", query = "SELECT *from person  where last_name=?1",resultClass = Person.class)})
 public class Person {
 
     @Id
