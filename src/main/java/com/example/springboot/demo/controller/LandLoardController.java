@@ -1,7 +1,9 @@
 package com.example.springboot.demo.controller;
 
 import com.example.springboot.demo.entities.LandLoard;
+import com.example.springboot.demo.model.LandLoadDTO;
 import com.example.springboot.demo.model.LandLoardAndPhone;
+import com.example.springboot.demo.model.LandLoardCriteria;
 import com.example.springboot.demo.service.LandLoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,4 +35,11 @@ public class LandLoardController {
         Integer landLoardAndPhoneBasedOnName = landLoardService.countLandLoards();
         return landLoardAndPhoneBasedOnName;
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/findlandloards")
+    public List<LandLoadDTO> findLandLoardsBySpecification(@RequestBody LandLoardCriteria landLoardCriteria){
+        List<LandLoadDTO> landLoards = landLoardService.findLandLoards(landLoardCriteria);
+        return landLoards;
+    }
+
 }

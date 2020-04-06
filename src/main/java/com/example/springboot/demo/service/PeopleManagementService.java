@@ -2,6 +2,8 @@ package com.example.springboot.demo.service;
 
 import com.example.springboot.demo.entities.Person;
 import com.example.springboot.demo.repository.PeopleManagementRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +14,9 @@ import java.util.Optional;
 
 @Service
 public class PeopleManagementService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PeopleManagementService.class);
+
 
     @Autowired
     PeopleManagementRepository peopleManagementRepository;
@@ -25,7 +30,9 @@ public class PeopleManagementService {
     }
 
     public Person savePerson(Person person){
-       return peopleManagementRepository.save(person);
+        LOGGER.info("PeopleManagementService.savePerson() {}",person.getFirstName());
+
+        return peopleManagementRepository.save(person);
     }
 
 

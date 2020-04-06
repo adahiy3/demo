@@ -1,0 +1,40 @@
+spring:
+  profiles: test
+
+server:
+  port: 9331
+
+name: test-YAML
+environment: test
+servers:
+  - www.abc.test.com
+  - www.xyz.test.com
+
+---
+spring:
+  profiles: prod
+name: prod-YAML
+environment: production
+servers:
+  - www.abc.com
+  - www.xyz.com
+
+---
+spring:
+  profiles: default
+name: local-YAML
+environment: local
+logging:
+  file: app.log
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+servers:
+  - www.abc.com
+  - www.xyz.com
+mail:
+  hostname: gmail.com
+  port: 9090
+  from: amit_dahiya@gmail.com
+
+

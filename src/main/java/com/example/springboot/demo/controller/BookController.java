@@ -3,11 +3,14 @@ package com.example.springboot.demo.controller;
 import com.example.springboot.demo.entities.Book;
 import com.example.springboot.demo.model.BookAuthorAndTitle;
 import com.example.springboot.demo.repository.BookCustomRepositoryInterface;
+import com.example.springboot.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,9 @@ public class BookController {
 
     @Autowired
     BookCustomRepositoryInterface bookCustomRepositoryInterface;
+
+    @Autowired
+    BookService bookService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/books")
     private List<Book> getAllBooksByAuthorAndTitle() {
@@ -27,4 +33,10 @@ public class BookController {
     private List<BookAuthorAndTitle> getAllBooksAuthorAndTitleByAuthorAndTitle() {
         return bookCustomRepositoryInterface.findAllBooksAuthorAndTitleByTitleAndAuthor("Javabook", "Amit");
     }
+
+        @RequestMapping(method = RequestMethod.GET, value = "/booksByTitle/{bookTitle}")
+    private List<Book> getAllBooksByTitle(@PathVariable("bookTitle") String bookTitle) {
+        return bookService.getallBooks(bookTitle);
+    }
+
 }

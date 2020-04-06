@@ -26,7 +26,7 @@ public class LandLoard {
     @Column(name = "ladloard_address")
     private String address;
 
-    @OneToMany(mappedBy = "landLoard",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "landLoard",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     private List<Phone> phoneList = new ArrayList<>();
 
     public Integer getId() {

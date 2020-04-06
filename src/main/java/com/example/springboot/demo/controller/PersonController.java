@@ -6,6 +6,7 @@ import com.example.springboot.demo.model.PersonRequest;
 import com.example.springboot.demo.service.PeopleManagementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -25,8 +26,15 @@ public class PersonController {
     PeopleManagementService peopleManagementService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
-    public Person savePerson(@RequestBody Person person) {
-        return peopleManagementService.savePerson(person);
+    public Person savePerson(@RequestBody Person person,String transactionId) {
+        transactionId = "t1234";
+        MDC.put("transactionId",transactionId);
+        LOGGER.info("creating person {}",person.getFirstName());
+
+        Person person1 = peopleManagementService.savePerson(person);
+        //MDC.clear();
+
+        return  person1;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/savepersons")

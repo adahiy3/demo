@@ -20,7 +20,7 @@ public class ExceptionHandlerControllerAdvice {
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public @ResponseBody ExceptionResponse handleResourceNotFound(final ResourceNotFoundException exception, final HttpServletRequest request) {
-        LOGGER.debug("ExceptionHandlerControllerAdvice: stacktrace {}",exception.getStackTrace());
+//        LOGGER.debug("ExceptionHandlerControllerAdvice: stacktrace {}",exception.getStackTrace());
 
 
         ExceptionResponse error = new ExceptionResponse();
