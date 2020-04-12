@@ -3,6 +3,7 @@ package com.example.springboot.demo.service;
 import com.example.springboot.demo.entities.Book;
 import com.example.springboot.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public class BookService {
     }
 
 
+    public List<Book> findallBooks(Sort sort) {
+        return bookRepository.findAll(sort);
+    }
 }
 
 

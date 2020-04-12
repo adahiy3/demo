@@ -5,6 +5,7 @@ import com.example.springboot.demo.model.BookAuthorAndTitle;
 import com.example.springboot.demo.repository.BookCustomRepositoryInterface;
 import com.example.springboot.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +38,11 @@ public class BookController {
         @RequestMapping(method = RequestMethod.GET, value = "/booksByTitle/{bookTitle}")
     private List<Book> getAllBooksByTitle(@PathVariable("bookTitle") String bookTitle) {
         return bookService.getallBooks(bookTitle);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/allbooks")
+    private List<Book> getAllBooks() {
+        return bookService.findallBooks(Sort.by("bookTitle").ascending());
     }
 
 }

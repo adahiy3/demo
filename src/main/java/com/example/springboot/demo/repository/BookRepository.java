@@ -14,4 +14,6 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
     @Query("SELECT b FROM Book b WHERE b.bookTitle like  %:title%")
     public List<Book> getAllBooksByTitle(@Param("title") String title);
 
+
+
 }
